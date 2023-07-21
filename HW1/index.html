@@ -4,39 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="main.js" type="module" defer></script> 
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="title">Tasks</div>
     <ul id="tasks-list">
-        <li class="task">
-            <div class="task-element">
-                <div class="buttons-container">
-                    <button id="complete-task" class="feature-buttons">
-                        ✓
-                    </button>
-                    <button id="delete-task" class="feature-buttons">
-                        ✗
-                    </button>
-                </div>
-                <div class="task-content">
-                    <div class="task-element-top">
-                        <h1 class="task-title">Make an add feature</h1>
-                        <h4 class="task-assignee">claudiu_108@yahoo.com</h4>
-                    </div>
-                    <p class="task-info">
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-            </div>
-        </li>
+        
     </ul>
     <button id="add-task">
         Add
     </button>
     
-    <dialog id="add-dialog" open>
+    <dialog id="add-dialog">
         <form id="add-form">
             <label for="form-title" >Title</label>
             <input id="form-title" type="text" pattern="[a-zA-Z0-9\s]+" max="50" placeholder="no special characters"/>
@@ -48,10 +28,10 @@
             <input id="form-email" type="email" placeholder="task@task.com"/>
         </form>
         <div id="form-buttons">
-            <button id="confirm-form" class="feature-buttons">
+            <button id="confirm-form-btn" class="feature-buttons">
                 ✓
             </button>
-            <button id="cancel-form" class="feature-buttons">
+            <button id="cancel-form-btn" class="feature-buttons">
                 ✗
             </button>
         </div>
