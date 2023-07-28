@@ -52,7 +52,7 @@ header{
     margin-top: 30px;
 }
 
-#section-form{
+.section-form{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -68,6 +68,7 @@ header{
     border: 1px solid black;
     border-radius: 3px;
     margin-top: 20px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .form-button{
@@ -106,11 +107,121 @@ header{
 #link-redirect{
     margin: auto;
     color: green;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 #link-redirect img{
     border-bottom: 1px solid green;
-    margin-bottom: -2px;
+    margin-bottom: -2.5px;
 }
 
+#review{
+    width: 80%;
+    background-color: white;
+    height: 150px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#review-text{
+    font-size: 12px;
+    padding: 25px;
+    margin-top: -8px;
+}
+
+#review-person{
+    display: flex;
+    font-size: 12px;
+}
+
+#review-image{
+    border: 1px solid black;
+    border-radius: 100px;
+    height: 30px;
+    width: 30px;
+    margin-top: -30px;
+    margin-left: 25px;
+}
+
+#person-info{
+    margin-top: -65px;
+    margin-left: 10px;
+    font-size: 8px;
+}
+
+#person-info h4{
+    margin-left: -20px;
+    margin-bottom: -10px;
+}
+
+#section-3{
+    background-color: hsl(238, 22%, 44%);
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    padding: 40px 0px;
+    padding-bottom: 80px;
+}
+
+#section-3 h4{
+    margin: auto;
+    width: 50%;
+}
+
+footer{
+    background-color: hsl(243, 87%, 12%);
+    color: white;
+    padding-left: 30px;
+}
+
+#icon-text-cnt{
+    margin-bottom: 30px;
+}
+
+.normal-icon-cnt{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+
+.icon-text{
+    display: flex;
+}
+
+.icon-text p{
+    margin-left: 15px;
+    
+}
+
+.icon-text img{
+    height: 20px;
+    width: 25px;
+    margin-top: 15px;
+}
+
+.normal-icon-cnt a{
+    margin-top: 15px;
+}
+
+
+
+#social-icons{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+#social-icons img{
+    height: 30px;
+    width: 30px;
+    margin-right: 20px;
+    margin-bottom: 40px;
+}
+
+#footer-logo{
+    margin-top: 70px;
+    margin-bottom: 30px;
+}
