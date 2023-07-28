@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+body{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    margin: auto;
+    margin-top: 35px;
+}
+
+#logo{
+    width: 80px;
+    height: 30px;
+    object-fit: scale-down;
+    margin-top: -3px;
+}
+
+#nav-buttons a{
+    font-size: 14px;
+    text-decoration: none;
+    margin-left: 8px;
+    font-weight: 700;
+}
+
+
+#section-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 16px;
+    
+}
+
+#section-1 h1{
+    width: 90%;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.image-section{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 30px;
+}
+
+#section-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 75%;
+    margin: auto;
+}
+
+.form-input{
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 12px;
+    font-family: 'Ubuntu';
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-top: 20px;
+}
+
+.form-button{
+    padding: 10px;
+    color: white;
+    background-color: hsl(224, 93%, 58%);
+    border: 1px solid hsl(224, 93%, 58%);
+    border-radius: 3px;
+    margin-top: 15px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#section-2{
+    background-color: hsl(240, 75%, 98%);
+    margin-top: -7px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#section-2 h4{
+    width: 100%;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+#curve{
+    margin-top: 80px;
+    width: 100%;
+}
+
+#link-redirect{
+    margin: auto;
+    color: green;
+    margin-top: 20px;
+}
+
+#link-redirect img{
+    border-bottom: 1px solid green;
+    margin-bottom: -2px;
+}
+
