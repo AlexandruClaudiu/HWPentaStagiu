@@ -3,10 +3,11 @@
 
 body{
     font-family: 'Open Sans', sans-serif;
+    margin: 0;
 }
 
 p{
-    font-size: 0.7rem;
+    font-size: 0.7em;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -14,14 +15,20 @@ h1, h2, h3, h4, h5, h6{
     font-weight: 700;
 }
 
-footer{
+header{
     display: flex;
     justify-content: space-between;
     padding: 5%;
 }
 
+.curves{
+    margin-bottom: -10px;
+    width: 100%;
+}
+
 #logo{
     width: 30%;
+    max-width: 200px;
     object-fit: contain;
 }
 
@@ -29,33 +36,46 @@ footer{
     border-radius: 30px;
     padding: 5px;
     width: 30%;
+    max-width: 100px;
+    height: 10%;
     color: hsl(321, 100%, 78%);
     background-color: white;
     border: 1px solid hsl(321, 100%, 78%);
     font-weight: 500;
-    font-size: 0.7rem;
+    font-size: 0.7em;
     box-shadow: hsl(321, 100%, 78%) 0px 1px 4px;
 }
 
 #section-1{
     padding: 10%;
     text-align: center;
+    margin-top: -10%;
 }
 
 #section1-text{
     margin: auto;
     text-align: center;
-    font-size: 0.85rem;
+    font-size: 0.85em;
+}
+
+#section1-prices{
+    display: flex;
+    flex-direction: column;
 }
 
 #section-1 button{
+    margin-bottom: 60px;
+}
+
+.pink-button{
     border-radius: 30px;
     background-color: hsl(322, 100%, 66%);
     color: white;
     padding: 10px;
-    width: 70%;
+    width: 200px;
     margin-top: 40px;
-    margin-bottom: 60px;
+    border: 1px solid hsl(322, 100%, 66%);
+    box-shadow: gray 0px 1px 4px;
 }
 
 #mockup-image{
@@ -79,8 +99,102 @@ footer{
 
 
 .price{
-    font-size: 2.5rem;
+    font-size: 2.5em;
     margin-top: -5px;
     margin-bottom: -10px;
     font-weight: 700;
 }
+
+#section-2{
+    background-color: hsl(207, 100%, 98%);
+}
+
+#section-4{
+    background-color: hsl(207, 100%, 98%);
+}
+
+#section-5{
+    margin-top: 70px;
+}
+
+.img-text-section{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.img-text-section img{
+    width: 70%;
+    margin: auto;
+    margin-top: 90px;
+    margin-bottom: 40px;
+}
+
+.section-text{
+    width: 70%;
+    margin: auto;
+    margin-bottom: 70px;
+}
+
+footer{
+    background-color: hsl(192, 100%, 9%);
+    color: white;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.footer-section{
+    margin-top: 40px;
+    margin: auto;
+    padding: 7%;
+}
+
+#footer-form{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 100%;
+}
+
+#footer-form input{
+    width: 98%;
+    height: 30px;
+    border-radius: 5px;
+    margin-bottom: -20px;
+}
+
+#footer-form button{
+    border-radius: 5px;
+    width: 50%;
+    box-shadow: black 0px 0px 0px 0px;
+}
+
+.contact-logo{
+    display: flex;
+}
+.contact-logo img{
+    width: 15px;
+    object-fit: scale-down;
+    margin-right: 10px;
+}
+
+#footer-icons{
+    margin: 20px 0px;
+}
+
+#footer-icons img{
+    margin-right: 10px;
+}
+
+@media (min-width: 1200px){
+    body{
+        font-size: 24px;
+    }
+
+    footer{
+        margin-top: -5px;
+    }
+}
+
