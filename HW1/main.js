@@ -125,6 +125,3 @@ function completeTask(i){
 window.onload = function(){
     displayTasks();
 }
-
-
-
