@@ -8,6 +8,11 @@ body{
 
 p{
     font-size: 0.7em;
+    font-weight: 600;
+}
+
+button{
+    font-weight: 600;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -37,7 +42,7 @@ header{
     padding: 5px;
     width: 30%;
     max-width: 100px;
-    height: 10%;
+    height: 12%;
     color: hsl(321, 100%, 78%);
     background-color: white;
     border: 1px solid hsl(321, 100%, 78%);
@@ -49,7 +54,7 @@ header{
 #section-1{
     padding: 10%;
     text-align: center;
-    margin-top: -10%;
+    margin-top: 20px;
 }
 
 #section1-text{
@@ -71,11 +76,12 @@ header{
     border-radius: 30px;
     background-color: hsl(322, 100%, 66%);
     color: white;
-    padding: 10px;
-    width: 200px;
+    padding: 15px;
+    width: 240px;
     margin-top: 40px;
     border: 1px solid hsl(322, 100%, 66%);
     box-shadow: gray 0px 1px 4px;
+    
 }
 
 #mockup-image{
@@ -94,7 +100,7 @@ header{
 }
 
 .text-icon img{
-    width: 25px;
+    width: 50%;
 }
 
 
@@ -104,6 +110,7 @@ header{
     margin-bottom: -10px;
     font-weight: 700;
 }
+
 
 #section-2{
     background-color: hsl(207, 100%, 98%);
@@ -160,7 +167,7 @@ footer{
 
 #footer-form input{
     width: 98%;
-    height: 30px;
+    height: 43px;
     border-radius: 5px;
     margin-bottom: -20px;
 }
@@ -195,6 +202,83 @@ footer{
 
     footer{
         margin-top: -5px;
+        flex-direction: row-reverse;
+    }
+
+    footer p{
+        width: 65%;
+    }
+    .footer-section{
+        margin-top: -50px;
+    }
+
+    .contact-logo{
+        margin-bottom: -0px;
+    }
+
+    #section-1{
+        margin-top: -100px;
+    }
+
+    #section1-text{
+        width: 50%;
+    }
+
+    #footer-icons{
+        margin-bottom: -60px;
+    }
+
+    #footer-form{
+        flex-direction: row;
+    }
+    #footer-form input{
+        width: 50%;
+        margin-bottom: 0px;
+    }
+    #footer-form button{
+        width: 25%;
+        margin-left: 30px;
+    }
+
+    #section1-prices{
+        flex-direction: row;
+        margin-bottom: -300px;
+    }
+
+    .img-text-section{
+        flex-direction: row-reverse;
+        text-align: left;
+        margin-top: -30px;
+    }
+    .img-text-section img{
+        width: 35%;
+    }
+    .section-text{
+        width: 35%;
+        margin-top: 200px;
+    }
+
+    #section-3{
+        flex-direction: row;
+    }
+    #section-5{
+        flex-direction: column;
+        text-align: center;
+        padding: 5%;
+    }
+    #section-5 h2{
+        margin-bottom: -200px;
+    }
+
+    #first-curve{
+        content:url("./images/bg-section-top-desktop-1.svg");
+        margin-top: 250px;
+    }
+    #second-curve{
+        content:url("./images/bg-section-bottom-desktop-1.svg");
+    }
+
+    #third-curve{
+        content:url("./images/bg-section-top-desktop-2.svg");
     }
 }
-
