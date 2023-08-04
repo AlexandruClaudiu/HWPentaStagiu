@@ -1,8 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
+body{
+    margin: 0;
+}
 
 
-#section-2{
+#section-2, #section-4{
     background-color: hsl(207, 100%, 98%);
+    padding-bottom: 40px;
+}
+
+.main__section{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15%;
+}
+
+.section__curve{
+    width: 100%;
+    margin-bottom: -10px;
+}
+
+.content__text{
+    margin-top: 60px;
+}
+
+.content__img{
+    width: 70%;
 }
