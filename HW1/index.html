@@ -1,43 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="main.js" type="module" defer></script> 
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div id="title">Tasks</div>
-    <div id="heading">
-        My tasks:
-    </div>
-    <ul id="tasks-list">
-        
-    </ul>
-    <button id="add-task">
-        Add
-    </button>
-    
-    <dialog id="add-dialog">
-        <form id="add-form">
-            <label for="form-title" >Title</label>
-            <input id="form-title" type="text" pattern="[a-zA-Z0-9\s]+" max="50" placeholder="no special characters"/>
-            <label for="form-text">Enter the text</label>
-            <textarea id="form-text" maxlength="250" placeholder="max 250" cols="100" rows="5">
-    
-            </textarea>
-            <label for="form-email">Enter the assignee (email)</label>
-            <input id="form-email" type="email" placeholder="task@task.com"/>
-        </form>
-        <div id="form-buttons">
-            <button id="confirm-form-btn" class="feature-buttons">
-                ✓
-            </button>
-            <button id="cancel-form-btn" class="feature-buttons">
-                ✗
-            </button>
-        </div>
-    </dialog>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="main.js" type="module" defer></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <h1>Tasks</h1>
+        </header>
+        <main>
+            <button id="add-task-btn">Add a task</button>
+            <ul id="task-list">
+                <li>
+                    <div class="task-cnt">
+                        <div class="task-cnt__heading">
+                            <h3 class="heading__title">Lets's complete this task!</h3>
+                            <button class="complete-task-btn"></button>
+                        </div>
+                        <h5 class="heading__assignee">alexandruclaudiu108@gmail.com</h5>
+                        <p class="task__dsc">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        </p>
+                        <div class="buttons-cnt">
+                            <button class="action-buttons delete-btn">Delete</button>
+                            <button class="action-buttons edit-btn">Edit</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div id="reveal-completed-tasks">
+                <img id="arrow-btn" src="./icons/right-arrow.png" alt="arrow">
+                <h3 id="no-completed-tasks">Completed: 0</h3>
+            </div>
+            <ul id="completed-task-list">
+
+            </ul>
+            <dialog id="dialog">
+                <div id="dialog__form">
+                    <h3>Add a new task!</h3>
+                    <label for="form__name">Title</label>
+                    <input id="form__name" type="text" maxlength="50" placeholder="First task..." required>
+                    <div id="title-error" class="error-btn"></div>
+                    <label for="form__assignee">Assignee</label>
+                    <input id="form__assignee" type="email" placeholder="example@email.com" required>
+                    <div id="email-error" class="error-btn"></div>
+                    <label for="form__task-dsc">Task Desc</label>
+                    <textarea id="form__task-dsc" maxlength="250" rows="6" placeholder="250 characters max..." required></textarea>
+                    <div id="form__buttons">
+                        <button id="form-save-btn" class="action-buttons">Add</button>
+                        <button id="form-cancel-btn" class="action-buttons">Cancel</button>
+                    </div>
+                    <div id="form-error" class="error-btn"></div>
+                </div>
+            </dialog>
+        </main>
+    </body>
 </html>

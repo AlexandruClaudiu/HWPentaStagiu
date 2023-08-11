@@ -1,14 +1,8 @@
 export class Task{
-    constructor(title, email, text, complete){
-        this.title = title;
-        this.email = email;
-        this.text = text;
-        this._isCompleted = complete;
-    }
-    get isCompleted(){
-        return this._isCompleted;
-    }
-    set isCompleted(tmp){
-        this._isCompleted = tmp;
+    constructor(title, assignee, text, isCompleted = false) {
+        this._title = title;
+        this._assignee = assignee;
+        this._text = text;
+        this._isCompleted = isCompleted;
     }
 }

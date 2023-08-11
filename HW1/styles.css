@@ -1,131 +1,155 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300&display=swap');
 
-#title{
-    width: 200px;
-    height: 100px;
+body{
+    margin: 0;
+    background-color: #dcdcdc;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+}
+
+p{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-size: 12px;
+}
+
+header{
+    width: 100px;
     margin: auto;
-    font-size: 40px;
-    margin-top: 50px;
-    font-family: 'Ubuntu', sans-serif;
+    margin-top: 60px;
 }
 
-#heading{
-    margin-left: 130px;
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 25px;
-    border-bottom: 1px solid black;
-    width: 70%;
-}
-
-#task-list{
-    min-width: 80%;
-}
-
-.task{
-    list-style-type: none;
-    margin-left: 100px;
-    width: 70%;
-    margin-bottom: 1px;
-}
-
-.task-element{
-    height: 200px;
-    width: 100%;
-    display: flex;
-}
-
-.task-content{
-    margin-left: 30px;
-    background-color: #606060;
-    padding: 15px;
-    color: aliceblue;
-    border-radius: 8px;
-    font-family: 'Ubuntu', sans-serif;
+ul{
     width: 90%;
-    height: 130px;
+    margin: auto;
+    margin-left: 3%;
+    list-style-type: none;
+    padding: 0;
+    display: inline-block;
 }
 
-.task-element-top{
+li{
+    margin-top: 10px;
+}
+
+.task-cnt{
+    width: 100%;
+    height: fit-content;
+    border-radius: 5px;
+    background-color: white;
+    padding: 0.5% 2%;
+}
+.task-cnt__heading{
     display: flex;
     justify-content: space-between;
-    margin-top: -25px;
+    align-items: center;
 }
 
-.task-assignee{
-    margin-top: 33px;
+.task-cnt__heading button{
+    width: 25px;
+    height: 25px;
+    border-radius: 100px;
+    background-color: white;
+    margin-right: 8px;
 }
 
-#add-task{
-    border: 2px black;
-    width: 110px;
-    height: 50px;
-    margin-left: 140px;
-    border-radius: 10px;
+.heading__assignee{
+    margin-top: -15px;
+    margin-bottom: -5px;
 }
 
-.buttons-container{
+.action-buttons{
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-bottom: 5px;
+    width: 60px;
+    height: 25px;
+}
+
+.edit-btn{
+    margin-left: 10px;
+}
+
+#add-task-btn{
+    margin-left: 3%;
+    width: 100px;
+    height: 40px;
+    border-radius: 7px;
+    border: 1px solid gray;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+#dialog{
+    width: 80%;
+    max-width: 500px;
+}
+
+#dialog__form{
+    font-family: 'Raleway', sans-serif;
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
-    align-items: center;
-    background-color:  gray ;
-    width: 10%;
-    border-radius: 8px;
-    height: 160px;
 }
 
-.feature-buttons{
-    height: 50px;
-    width: 50px;
-    background-color: white;
-    border-radius: 100px;
+label{
+    font-size: 0.8em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
-button{
-    
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 700px;
-    font-size: 20px;
-}
-
-#add-dialog{
-    width: 500px;
+input{
+    padding: 5px;
     border-radius: 5px;
 }
 
-#add-form{
+#form__buttons{
+    margin-top: 20px;
+    margin-bottom: -10px;
+}
+
+#form-cancel-btn{
+    margin-left: 10px;
+}
+
+#reveal-completed-tasks{
     display: flex;
-    flex-direction: column;
-    font-family: 'Ubuntu', sans-serif;
-    padding: 20px;
+    align-items: center;
+    height: 30px;
+    width: 93.6%;
+    margin: 20px auto 0px 3%;
+    text-align: left;
+    background-color: white;
+    user-select: none;
 }
 
-input, textarea{
-    margin: 14px 0px;
-    padding: 5px;
-    font-size: 15px;
-    resize: none;
+#reveal-completed-tasks:hover{
+    cursor: pointer;
 }
 
-#form-buttons{
-    display: flex;
-    justify-content: space-around;
+#reveal-completed-tasks:active{
+    transform: scale(0.98);
 }
 
-#complete-task-btn:hover{
-    background-color: #2eea50;
-    color: white;
+#reveal-completed-tasks img{
+    width: 25px;
+    margin-left: 10px;
+    object-fit: scale-down;
 }
 
-#delete-task-btn:hover{
-    background-color: #ea2e2e;
-    color: white;
+#completed-task-list .complete-task-btn{
+    background-color: #1475e8;
 }
 
-button{
-    -webkit-transition: color 0.2s ease-out;
-    -moz-transition: color 0.2s ease-out;
-    -o-transition: color 0.2s ease-out;
-    -ms-transition: color 0.2s ease-out;
-    transition: color 0.2s ease-out;
-} 
+.error-btn{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+#form-error{
+    margin-top: 12px;
+}

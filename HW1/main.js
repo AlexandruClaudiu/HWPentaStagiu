@@ -1,127 +1,226 @@
 import {Task} from "./Task.js";
-var taskArray = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")) : [];
-const addDialogButton = document.getElementById("add-task");
-const addDialog = document.getElementById("add-dialog");
-const closeDialog = document.getElementById("cancel-form-btn");
-const confirmTask = document.getElementById("confirm-form-btn");
 
-for(let i = 0; i < taskArray.length; i++){
-    if(taskArray[i].isCompleted){
-        taskArray.push(taskArray.splice(i, 1)[0]);
-    }
+const tasksArray = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")) : [];
+const addButton = document.getElementById("add-task-btn");
+const dialog = document.getElementById("dialog");
+const cancelDialogBtn = document.getElementById("form-cancel-btn");
+const saveDialogBtn = document.getElementById("form-save-btn");
+const taskList = document.getElementById("task-list");
+const completedTaskList = document.getElementById("completed-task-list");
+const revealCompletedList = document.getElementById("reveal-completed-tasks");
+const arrowBtn = document.getElementById("arrow-btn");
+let editId = -1;
+let isCompletedListReveal = false;
+
+addButton.onclick = () =>{
+    clearDialog();
+    saveDialogBtn.textContent = "Add";
+    dialog.showModal();
 }
 
-addDialogButton.addEventListener("click", ()=>{
-    addDialog.showModal();
-})
+cancelDialogBtn.onclick = () =>{
+    dialog.close();
+}
 
-closeDialog.addEventListener("click", ()=>{
-    addDialog.close();
-})
+revealCompletedList.onclick = () =>{
+    if(isCompletedListReveal){
+        completedTaskList.style.display = "none";
+        isCompletedListReveal = false;
+        arrowBtn.src= "./icons/right-arrow.png"
+    } else{
+        completedTaskList.style.display = "block";
+        isCompletedListReveal = true;
+        arrowBtn.src= "./icons/down-arrow.png"
+    }
+    displayTasks();
+}
 
-confirmTask.addEventListener("click", ()=>{
-    const title = document.getElementById("form-title").value;
-    const email = document.getElementById("form-email").value;
-    const text = document.getElementById("form-text").value;
-    var currentTask = new Task(title, email, text, false);
-    addTask(currentTask);
-})
-
-
-
-function displayTasks(){
-    let tasks = "";
-    for(let i = 0; i < taskArray.length; i++){
-        if(taskArray[i].isCompleted == true){
-            tasks += `<li class="task">
-                        <div class="task-element">
-                            <div class="buttons-container">
-                                <button id="complete-task-btn" class="feature-buttons complete-btn" style="background-color: #2eea50; color:white;">
-                                    ✓
-                                </button>
-                                <button id="delete-task-btn" class="feature-buttons delete-btn">
-                                    ✗
-                                </button>
-                            </div>
-                            <div class="task-content" style="background-color: #2eea50;">
-                                <div class="task-element-top">
-                                    <h1 class="task-title"><s>${taskArray[i].title}</s></h1>
-                                    <h4 class="task-assignee">${taskArray[i].email}</h4>
-                                </div>
-                                <p class="task-info"><s>
-                                        ${taskArray[i].text}
-                                    </s>
-                                </p>
-                            </div>
-                        </div>
-                    </li>`
-        } else{
-            tasks += `<li class="task">
-                            <div class="task-element">
-                                <div class="buttons-container">
-                                    <button id="complete-task-btn" class="feature-buttons complete-btn">
-                                        ✓
-                                    </button>
-                                    <button id="delete-task-btn" class="feature-buttons delete-btn">
-                                        ✗
-                                    </button>
-                                </div>
-                                <div class="task-content">
-                                    <div class="task-element-top">
-                                        <h1 class="task-title">${taskArray[i].title}</h1>
-                                        <h4 class="task-assignee">${taskArray[i].email}</h4>
-                                    </div>
-                                    <p class="task-info">
-                                        ${taskArray[i].text}
-                                    </p>
-                                </div>
-                            </div>
-                        </li>`
+function updateNumberCompletedTasks(){
+    let numberOfCompletedTasks = 0;
+    for(let i = 0; i < tasksArray.length; i++){
+        if(tasksArray[i]._isCompleted === true){
+            numberOfCompletedTasks++;
         }
-        
     }
-    document.getElementById("tasks-list").innerHTML = tasks;
-    addDeleteFunction();
-    addCompleteFunction();
+    document.getElementById("no-completed-tasks").innerHTML = "Completed: " + numberOfCompletedTasks;
+    if(numberOfCompletedTasks === 0){
+        completedTaskList.style.display = "none";
+        arrowBtn.src= "./icons/right-arrow.png"
+    }
 }
 
-function addDeleteFunction(){
-    let deleteButtonsArray = document.querySelectorAll(".delete-btn");
-    deleteButtonsArray.forEach((btn, i) => {
-       btn.addEventListener("click", ()=>{deleteTask(i)});
-    });
+function addDeleteEventListeners(){
+    document.querySelectorAll(".delete-btn").forEach((db, i)=>{
+        db.addEventListener("click", ()=>{
+            deleteTask(i);
+        })
+    })
 }
-
-function addCompleteFunction(){
-    let completeButtonsArray = document.querySelectorAll(".complete-btn");
-    completeButtonsArray.forEach((btn, i) =>{
-        btn.addEventListener("click", ()=>{completeTask(i)});
+function addEditEventListeners(){
+    document.querySelectorAll(".edit-btn").forEach((db, i) =>{
+        db.addEventListener("click", ()=>{
+            saveDialogBtn.textContent = "Edit";
+            document.getElementById("form__name").value = tasksArray[i]._title;
+            document.getElementById("form__assignee").value = tasksArray[i]._assignee;
+            document.getElementById("form__task-dsc").value = tasksArray[i]._text;
+            editId = i;
+            dialog.showModal();
+        })
     })
 }
 
+function clearDialog(){
+    document.getElementById("form__name").value = "";
+    document.getElementById("form__assignee").value = "";
+    document.getElementById("form__task-dsc").value = "";
+}
+
+function addToggleCompleteEventListeners(){
+    document.querySelectorAll(".complete-task-btn").forEach((db, i)=>{
+        db.addEventListener("click", () =>{
+            let taskCompleted = tasksArray[i]._isCompleted;
+            if(taskCompleted === true){
+                tasksArray[i]._isCompleted = false;
+                const tmp = tasksArray[i];
+                tasksArray.splice(i, 1);
+                tasksArray.unshift(tmp);
+            } else {
+                tasksArray[i]._isCompleted = true;
+                const tmp = tasksArray[i];
+                tasksArray.splice(i, 1);
+                tasksArray.push(tmp);
+            }
+            localStorage.setItem("tasks", JSON.stringify(tasksArray));
+            displayTasks();
+            updateNumberCompletedTasks();
+        })
+    })}
+
+
+saveDialogBtn.onclick = () =>{
+    const name = document.getElementById("form__name");
+    const assignee = document.getElementById("form__assignee");
+    const dsc = document.getElementById("form__task-dsc");
+    const errorMessageForm = document.getElementById("form-error");
+    if(errorMessageTitle.textContent === ""){
+        errorMessageTitle.textContent = "This cannot be empty!";
+    }
+    if(errorMessageEmail.textContent === ""){
+        errorMessageEmail.textContent = "This cannot be empty!";
+    }
+    if(errorMessageTitle.textContent !== "" || errorMessageEmail.textContent !== ""){
+        errorMessageForm.textContent = "Solve all the errors first!";
+    } else{
+        errorMessageForm.textContent = "";
+        const task = new Task(name.value, assignee.value, dsc.value);
+        if(editId !== -1){
+            addTask(task, editId);
+        } else {
+            addTask(task);
+        }
+    }
+}
+
+function displayTasks(){
+    let tasks = "";
+    let completedTasks = "";
+    for(let i = 0; i < tasksArray.length; i++){
+        let isCompleted = tasksArray[i]._isCompleted;
+        let task = "";
+        task += `<li>
+                    <div class="task-cnt">
+                        <div class="task-cnt__heading">
+                            <h3 class="heading__title">`;
+        if(isCompleted === true){
+            task += `<s>${tasksArray[i]._title}</s>`;
+        } else {
+            task += `${tasksArray[i]._title}`;
+        }
+        task += `</h3>
+                            <button class="complete-task-btn"></button>
+                        </div>
+                        <h5 class="heading__assignee">${tasksArray[i]._assignee}</h5>
+                        <p class="task__dsc">
+                            ${tasksArray[i]._text}
+                        </p>
+                        <div class="buttons-cnt">
+                            <button class="action-buttons delete-btn">Delete</button>
+                            <button class="action-buttons edit-btn">Edit</button>
+                        </div>
+                    </div>
+                </li>`;
+        if(isCompleted === true){
+            completedTasks += task;
+        } else{
+            tasks += task;
+        }
+    }
+    completedTaskList.innerHTML = completedTasks;
+    taskList.innerHTML = tasks;
+    addDeleteEventListeners();
+    addEditEventListeners();
+    addToggleCompleteEventListeners();
+}
+
 function addTask(task){
-    taskArray.push(task);
-    localStorage.setItem("tasks", JSON.stringify(taskArray));
-    location.reload();
+    if(editId !== -1){
+        tasksArray[editId] = task;
+    } else {
+        tasksArray.push(task);
+    }
+    editId = -1;
+    localStorage.setItem("tasks", JSON.stringify(tasksArray));
+    updateNumberCompletedTasks();
+    displayTasks();
+    dialog.close();
 }
 
 function deleteTask(i){
-    taskArray.splice(i, 1);
-    localStorage.setItem('tasks', JSON.stringify(taskArray));
-    location.reload();
-}
-
-function completeTask(i){
-    let completed = taskArray[i].isCompleted;
-    if(completed == true){
-        taskArray[i].isCompleted = false;
-    } else{
-        taskArray[i].isCompleted = true;
-    }
-    localStorage.setItem('tasks', JSON.stringify(taskArray));
-    location.reload();
-}
-
-window.onload = function(){
+    tasksArray.splice(i, 1);
+    localStorage.setItem("tasks", JSON.stringify(tasksArray));
+    updateNumberCompletedTasks();
     displayTasks();
 }
+
+
+window.onload = () =>{
+    displayTasks();
+    completedTaskList.style.display = "none";
+}
+
+//Errors
+
+const inputTitle = document.getElementById("form__name");
+const errorMessageTitle = document.getElementById("title-error");
+
+inputTitle.addEventListener("input", ()=>{
+    const inputValue = inputTitle.value.trim();
+    if(inputValue === ""){
+        errorMessageTitle.textContent = "Title cannot be empty!";
+    }
+    else if (!/^[a-zA-Z0-9]+$/.test(inputValue)) {
+        errorMessageTitle.textContent = "Only alphanumeric characters are allowed.";
+    } else {
+        errorMessageTitle.textContent = "";
+    }
+})
+
+const inputEmail = document.getElementById("form__assignee");
+const errorMessageEmail = document.getElementById("email-error");
+
+function isValidEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailRegex.test(email);
+}
+
+inputEmail.addEventListener("input", ()=>{
+    const inputValue = inputEmail.value.trim();
+    if(inputValue === ""){
+        errorMessageEmail.textContent = "Title cannot be empty!";
+    }
+    else if (!isValidEmail(inputValue)) {
+        errorMessageEmail.textContent = "Please enter a valid email address.";
+    } else {
+        errorMessageEmail.textContent = "";
+    }
+})
