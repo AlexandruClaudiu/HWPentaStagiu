@@ -1,0 +1,1 @@
+This project uses ES modules so you may consider using live-server(vscode) or something similar.

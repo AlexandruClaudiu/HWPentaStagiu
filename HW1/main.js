@@ -9,6 +9,7 @@ const taskList = document.getElementById("task-list");
 const completedTaskList = document.getElementById("completed-task-list");
 const revealCompletedList = document.getElementById("reveal-completed-tasks");
 const arrowBtn = document.getElementById("arrow-btn");
+const errorMessageForm = document.getElementById("form-error");
 let editId = -1;
 let isCompletedListReveal = false;
 
@@ -19,6 +20,7 @@ addButton.onclick = () =>{
 }
 
 cancelDialogBtn.onclick = () =>{
+    clearDialog();
     dialog.close();
 }
 
@@ -73,6 +75,9 @@ function clearDialog(){
     document.getElementById("form__name").value = "";
     document.getElementById("form__assignee").value = "";
     document.getElementById("form__task-dsc").value = "";
+    errorMessageEmail.textContent = "";
+    errorMessageTitle.textContent = "";
+    errorMessageForm.textContent = "";
 }
 
 function addToggleCompleteEventListeners(){
@@ -101,14 +106,13 @@ saveDialogBtn.onclick = () =>{
     const name = document.getElementById("form__name");
     const assignee = document.getElementById("form__assignee");
     const dsc = document.getElementById("form__task-dsc");
-    const errorMessageForm = document.getElementById("form-error");
-    if(errorMessageTitle.textContent === ""){
+    if(inputTitle.value === ""){
         errorMessageTitle.textContent = "This cannot be empty!";
     }
-    if(errorMessageEmail.textContent === ""){
+    if(errorMessageEmail.value === ""){
         errorMessageEmail.textContent = "This cannot be empty!";
     }
-    if(errorMessageTitle.textContent !== "" || errorMessageEmail.textContent !== ""){
+    if(inputEmail.textContent !== "" || errorMessageEmail.textContent !== ""){
         errorMessageForm.textContent = "Solve all the errors first!";
     } else{
         errorMessageForm.textContent = "";
@@ -198,7 +202,7 @@ inputTitle.addEventListener("input", ()=>{
     if(inputValue === ""){
         errorMessageTitle.textContent = "Title cannot be empty!";
     }
-    else if (!/^[a-zA-Z0-9]+$/.test(inputValue)) {
+    else if (!/^[a-zA-Z0-9\s]+$/.test(inputValue)) {
         errorMessageTitle.textContent = "Only alphanumeric characters are allowed.";
     } else {
         errorMessageTitle.textContent = "";
