@@ -14,17 +14,7 @@ export class LimitedStack{
         if (this.items.length > 0) {
             return this.items.pop();
         } else {
-            return 0;
+            return -1;
         }
-    }
-    peek() {
-        if (this.items.length > 0) {
-            return this.items[this.items.length - 1];
-        } else {
-            return 0;
-        }
-    }
-    size() {
-        return this.items.length;
     }
 }
