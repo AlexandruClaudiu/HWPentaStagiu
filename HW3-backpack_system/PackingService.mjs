@@ -36,7 +36,7 @@ export class PackingService{
             else if(packUnpack === "unpack"){
                 if(cntSize === "small"){
                     if(this.backpack.smallCnt.pop(counter) === -1){
-                        result.push(-1);
+                        result.push(-2);
                     }else{
                         counter--;
                         result.push(counter++);
@@ -44,7 +44,7 @@ export class PackingService{
                 }
                 else if(cntSize === "medium"){
                     if(this.backpack.mediumCnt.pop(counter) === -1){
-                        result.push(-1);
+                        result.push(-2);
                     } else{
                         counter--;
                         result.push(counter++);
@@ -52,7 +52,7 @@ export class PackingService{
                 }
                 else if(cntSize === "big"){
                     if(this.backpack.bigCnt.pop(counter) === -1){
-                        result.push(-1);
+                        result.push(-2);
                     } else{
                         counter--;
                         result.push(counter++);
