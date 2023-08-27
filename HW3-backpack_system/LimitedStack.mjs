@@ -6,15 +6,20 @@ export class LimitedStack{
     push(item) {
         if (this.items.length < this.capacity) {
             this.items.push(item);
+            return true;
         } else {
-            return -1;
+            return false;
         }
     }
     pop() {
         if (this.items.length > 0) {
-            return this.items.pop();
+            this.items.pop();
+            return true;
         } else {
-            return -1;
+            return false;
         }
+    }
+    size(){
+        return this.items.length;
     }
 }

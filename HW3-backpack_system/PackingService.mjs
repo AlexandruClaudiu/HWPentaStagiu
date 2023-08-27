@@ -1,64 +1,41 @@
 import {Backpack} from "./Backpack.mjs";
+
 export class PackingService{
+    #counter;
     constructor(backpack) {
         this.backpack = backpack;
+        this.#counter = 1;
+    }
+
+    pack(itemSize){
+        if(this.backpack.compartments[itemSize].push(this.#counter) === false){
+            return -1;
+        } else{
+            return this.#counter++;
+        }
+    }
+
+    unpack(itemSize){
+        if(this.backpack.compartments[itemSize].pop(this.#counter) === false){
+            return -2;
+        }else{
+            return this.backpack.compartments[itemSize].size() + 2;
+        }
     }
 
     resolveQuery(query){
-        let counter = 1;
         let result = [];
         for(let i = 0; i < query.length; i++){
-            let packUnpack = query[i][0];
-            let cntSize = query[i][1];
-            if(packUnpack === "pack"){
-                if(cntSize === "small"){
-                    if(this.backpack.smallCnt.push(counter) === -1){
-                        result.push(-1);
-                    }else {
-                        result.push(counter++);
-                    }
-                }
-                else if(cntSize === "medium"){
-                    if(this.backpack.mediumCnt.push(counter) === -1){
-                        result.push(-1);
-                    }else {
-                        result.push(counter++);
-                    }
-                }
-                else if(cntSize === "big"){
-                    if(this.backpack.bigCnt.push(counter) === -1){
-                        result.push(-1);
-                    }else {
-                        result.push(counter++);
-                    }
-                }
+            const operation = query[i][0];
+            const itemSize = query[i][1];
+            let resultItem = 0;
+            if(operation === "pack"){
+                resultItem = this.pack(itemSize);
             }
-            else if(packUnpack === "unpack"){
-                if(cntSize === "small"){
-                    if(this.backpack.smallCnt.pop(counter) === -1){
-                        result.push(-2);
-                    }else{
-                        counter--;
-                        result.push(counter++);
-                    }
-                }
-                else if(cntSize === "medium"){
-                    if(this.backpack.mediumCnt.pop(counter) === -1){
-                        result.push(-2);
-                    } else{
-                        counter--;
-                        result.push(counter++);
-                    }
-                }
-                else if(cntSize === "big"){
-                    if(this.backpack.bigCnt.pop(counter) === -1){
-                        result.push(-2);
-                    } else{
-                        counter--;
-                        result.push(counter++);
-                    }
-                }
+            else if(operation === "unpack"){
+                resultItem = this.unpack(itemSize);
             }
+            result.push(resultItem);
         }
         return result;
     }

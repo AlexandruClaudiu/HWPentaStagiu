@@ -1,5 +1,6 @@
 import {PackingService} from "./PackingService.mjs";
 import {Backpack} from "./Backpack.mjs";
+import {LimitedStack} from "./LimitedStack.mjs";
 
 let backPack = {
     small: 8,
@@ -8,6 +9,7 @@ let backPack = {
 }
 
 const bp = new Backpack(backPack);
+
 const listOfActions = [["pack", "small"], ["pack", "big"], ["pack", "big"], ["pack", "big"], ["unpack", "big"], ["pack", "medium"]];
 const bpService = new PackingService(bp);
 console.log(bpService.resolveQuery(listOfActions));
